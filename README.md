@@ -1,6 +1,10 @@
 # Simulon API
 
-Simulon API is a collection of APIs for generating fake data using the `faker` library. It provides various endpoints to generate random data for different categories such as airline, animal, book, color, commerce, company, database, date, finance, food, git, hacker, image, internet, location, lorem, music, person, phone, science, string, system, vehicle, and word.
+Simulon API is a collection of APIs for generating fake data using the `faker`
+library. It provides various endpoints to generate random data for different
+categories such as airline, animal, book, color, commerce, company, database,
+date, finance, food, git, hacker, image, internet, location, lorem, music,
+person, phone, science, string, system, vehicle, and word.
 
 ## Installation
 
@@ -20,6 +24,7 @@ To set up the project locally, follow these steps:
 ## Usage
 
 To run the API locally, use the following command:
+
 ```sh
 deno run --allow-net --allow-env --allow-read apps/api/main.ts
 ```
@@ -58,4 +63,6 @@ Here is a list of available API endpoints:
 - `/v1/word`
 - `/v1/json`
 
-For detailed information about each endpoint, refer to the OpenAPI documentation available at `http://localhost:8000/openapi` and the Swagger UI at `http://localhost:8000/ui`.
+For detailed information about each endpoint, refer to the OpenAPI documentation
+available at `http://localhost:8000/openapi` and the Swagger UI at
+`http://localhost:8000/ui`.
