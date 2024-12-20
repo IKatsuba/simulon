@@ -1,0 +1,25 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --allow-read --watch --env-file apps/api/main.ts"
+  },
+  "workspace": [
+    "./apps/api",
+    "./packages/schema-faker",
+    "./packages/zod"
+  ],
+  "fmt": {
+    "singleQuote": true
+  },
+  "imports": {
+    "@apidevtools/json-schema-ref-parser": "npm:@apidevtools/json-schema-ref-parser@^11.7.3",
+    "@faker-js/faker": "npm:@faker-js/faker@^9.3.0",
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.0",
+    "@hono/zod-validator": "npm:@hono/zod-validator@^0.4.2",
+    "@types/json-schema": "npm:@types/json-schema@^7.0.15",
+    "hono": "npm:hono@^4.6.14",
+    "hono-openapi": "npm:hono-openapi@^0.2.1",
+    "json-schema": "npm:json-schema@^0.4.0",
+    "zod": "npm:zod@3.24.1",
+    "zod-openapi": "npm:zod-openapi@^4.2.0"
+  }
+}
