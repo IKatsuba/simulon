@@ -28,6 +28,7 @@ import { word } from './word/index.ts';
 import { json } from './json/index.ts';
 import { openAPISpecs } from 'hono-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
+import { env } from '@simulon/env';
 
 const faker = new Hono();
 
@@ -70,7 +71,9 @@ app.get(
         title: 'Simulon API',
         version: '1.0.0',
       },
-      servers: [{ url: 'http://localhost:8000', description: 'Local Server' }],
+      servers: [
+        { url: env.SIMULON_PUBLIC_URL ?? `http://${env.HOST}:${env.PORT}` },
+      ],
     },
   }),
 );
@@ -78,6 +81,6 @@ app.get(
 app.get('/ui', swaggerUI({ url: '/openapi' }));
 
 Deno.serve({
-  port: Number(Deno.env.get('PORT')) || 8000,
-  hostname: Deno.env.get('HOST') || '0.0.0.0',
+  port: env.PORT,
+  hostname: env.HOST,
 }, app.fetch);

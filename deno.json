@@ -5,7 +5,8 @@
   "workspace": [
     "./apps/api",
     "./packages/schema-faker",
-    "./packages/zod"
+    "./packages/zod",
+    "./packages/env"
   ],
   "fmt": {
     "singleQuote": true
