@@ -18,7 +18,9 @@ database.post(
           'application/json': {
             schema: resolver(
               z.object({
-                value: z.string(),
+                value: z.string().openapi({
+                  example: faker.database.column(),
+                }),
               }),
             ),
           },
@@ -41,7 +43,9 @@ database.post(
           'application/json': {
             schema: resolver(
               z.object({
-                value: z.string(),
+                value: z.string().openapi({
+                  example: faker.database.type(),
+                }),
               }),
             ),
           },
@@ -64,7 +68,9 @@ database.post(
           'application/json': {
             schema: resolver(
               z.object({
-                value: z.string(),
+                value: z.string().openapi({
+                  example: faker.database.collation(),
+                }),
               }),
             ),
           },
@@ -87,7 +93,9 @@ database.post(
           'application/json': {
             schema: resolver(
               z.object({
-                value: z.string(),
+                value: z.string().openapi({
+                  example: faker.database.engine(),
+                }),
               }),
             ),
           },
@@ -110,7 +118,9 @@ database.post(
           'application/json': {
             schema: resolver(
               z.object({
-                value: z.string(),
+                value: z.string().openapi({
+                  example: faker.database.mongodbObjectId(),
+                }),
               }),
             ),
           },

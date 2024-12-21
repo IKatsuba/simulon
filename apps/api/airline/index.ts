@@ -190,7 +190,9 @@ airline.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.airline.seat(),
+              }),
             })),
           },
         },
