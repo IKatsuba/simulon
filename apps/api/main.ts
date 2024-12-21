@@ -78,7 +78,7 @@ app.get(
   }),
 );
 
-app.get('/ui', swaggerUI({ url: '/openapi' }));
+app.get('/', swaggerUI({ url: '/openapi' }));
 
 Deno.serve({
   port: env.PORT,
