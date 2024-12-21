@@ -17,7 +17,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.adjective(),
+              }),
             })),
           },
         },
@@ -61,7 +63,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.adverb(),
+              }),
             })),
           },
         },
@@ -105,7 +109,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.conjunction(),
+              }),
             })),
           },
         },
@@ -149,7 +155,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.interjection(),
+              }),
             })),
           },
         },
@@ -193,7 +201,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.noun(),
+              }),
             })),
           },
         },
@@ -237,7 +247,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.preposition(),
+              }),
             })),
           },
         },
@@ -281,7 +293,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.sample(),
+              }),
             })),
           },
         },
@@ -325,7 +339,9 @@ word.post(
         content: {
           'application/json': {
             schema: resolver(z.object({
-              value: z.string(),
+              value: z.string().openapi({
+                example: faker.word.verb(),
+              }),
             })),
           },
         },
@@ -368,7 +384,11 @@ word.post(
         description: 'Success',
         content: {
           'application/json': {
-            schema: resolver(z.array(z.string())),
+            schema: resolver(z.object({
+              value: z.string().openapi({
+                example: faker.word.words(),
+              }),
+            })),
           },
         },
       },
