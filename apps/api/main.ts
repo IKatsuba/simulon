@@ -27,8 +27,8 @@ import { vehicle } from './vehicle/index.ts';
 import { word } from './word/index.ts';
 import { json } from './json/index.ts';
 import { openAPISpecs } from 'hono-openapi';
-import { swaggerUI } from '@hono/swagger-ui';
 import { env } from '@simulon/env';
+import { apiReference } from '@scalar/hono-api-reference';
 
 const faker = new Hono();
 
@@ -78,7 +78,14 @@ app.get(
   }),
 );
 
-app.get('/', swaggerUI({ url: '/openapi' }));
+app.get(
+  '/',
+  apiReference({
+    spec: {
+      url: '/openapi',
+    },
+  }),
+);
 
 Deno.serve({
   port: env.PORT,
