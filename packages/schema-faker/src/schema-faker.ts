@@ -1,8 +1,8 @@
-import { faker } from '@faker-js/faker';
+import { Faker } from '@faker-js/faker';
 // @ts-types="npm:@types/json-schema"
 import type { JSONSchema7 } from 'json-schema';
 
-export function schemaFaker(schema: JSONSchema7): unknown {
+export function schemaFaker(schema: JSONSchema7, faker: Faker): unknown {
   // enum
   if (Array.isArray(schema.enum)) {
     return randomItem(schema.enum);
@@ -11,13 +11,13 @@ export function schemaFaker(schema: JSONSchema7): unknown {
   // oneOf
   if (Array.isArray(schema.oneOf)) {
     const randomSchema = randomItem(schema.oneOf);
-    return schemaFaker(randomSchema as JSONSchema7);
+    return schemaFaker(randomSchema as JSONSchema7, faker);
   }
 
   // anyOf
   if (Array.isArray(schema.anyOf)) {
     const randomSchema = randomItem(schema.anyOf);
-    return schemaFaker(randomSchema as JSONSchema7);
+    return schemaFaker(randomSchema as JSONSchema7, faker);
   }
 
   // allOf
@@ -25,29 +25,29 @@ export function schemaFaker(schema: JSONSchema7): unknown {
     const mergedSchema = mergeAllSchemas(
       schema.allOf.filter((c) => typeof c !== 'boolean'),
     );
-    return schemaFaker(mergedSchema);
+    return schemaFaker(mergedSchema, faker);
   }
 
   const type = Array.isArray(schema.type) ? schema.type[0] : schema.type;
 
   switch (type) {
     case 'string':
-      return generateString(schema);
+      return generateString(schema, faker);
     case 'number':
     case 'integer':
-      return generateNumber(schema, type);
+      return generateNumber(schema, type, faker);
     case 'boolean':
       return faker.datatype.boolean();
     case 'object':
-      return generateObject(schema);
+      return generateObject(schema, faker);
     case 'array':
-      return generateArray(schema);
+      return generateArray(schema, faker);
     default:
       return null;
   }
 }
 
-function generateString(schema: JSONSchema7): string {
+function generateString(schema: JSONSchema7, faker: Faker): string {
   if (schema.format) {
     switch (schema.format) {
       case 'email':
@@ -105,6 +105,7 @@ function generateString(schema: JSONSchema7): string {
 function generateNumber(
   schema: JSONSchema7,
   type: 'number' | 'integer',
+  faker: Faker,
 ): number {
   const min = typeof schema.minimum === 'number' ? schema.minimum : 0;
   const max = typeof schema.maximum === 'number' ? schema.maximum : 1000;
@@ -116,7 +117,10 @@ function generateNumber(
   }
 }
 
-function generateObject(schema: JSONSchema7): Record<string, unknown> {
+function generateObject(
+  schema: JSONSchema7,
+  faker: Faker,
+): Record<string, unknown> {
   const result: Record<string, unknown> = {};
 
   const properties = schema.properties || {};
@@ -127,13 +131,13 @@ function generateObject(schema: JSONSchema7): Record<string, unknown> {
     if (!isRequired && Math.random() < 0.3) {
       continue;
     }
-    result[key] = schemaFaker(propSchema as JSONSchema7);
+    result[key] = schemaFaker(propSchema as JSONSchema7, faker);
   }
 
   return result;
 }
 
-function generateArray(schema: JSONSchema7): unknown[] {
+function generateArray(schema: JSONSchema7, faker: Faker): unknown[] {
   const itemsSchema = schema.items
     ? (Array.isArray(schema.items) ? schema.items[0] : schema.items)
     : {};
@@ -144,7 +148,7 @@ function generateArray(schema: JSONSchema7): unknown[] {
 
   const arr: unknown[] = [];
   for (let i = 0; i < length; i++) {
-    arr.push(schemaFaker(itemsSchema as JSONSchema7));
+    arr.push(schemaFaker(itemsSchema as JSONSchema7, faker));
   }
   return arr;
 }

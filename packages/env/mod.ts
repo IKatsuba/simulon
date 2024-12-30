@@ -1,3 +1,4 @@
+import type { Faker } from '@faker-js/faker';
 import z from 'zod';
 
 const envSchema = z.object({
@@ -8,3 +9,9 @@ const envSchema = z.object({
 });
 
 export const env = envSchema.parse(Deno.env.toObject());
+
+export type HonoEnv = {
+  Variables: {
+    faker: Faker;
+  };
+};
