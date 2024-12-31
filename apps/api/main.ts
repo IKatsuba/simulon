@@ -72,7 +72,7 @@ app.get(
     documentation: {
       info: {
         title: 'Simulon API',
-        version: '1.0.0',
+        version: env.SIMULON_VERSION,
       },
       servers: [
         { url: env.SIMULON_PUBLIC_URL ?? `http://${env.HOST}:${env.PORT}` },
