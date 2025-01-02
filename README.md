@@ -1,10 +1,10 @@
 # Simulon API
 
-Simulon API is a HTTP server for generating fake data using the `faker`
-library. It provides various endpoints to generate random data for different
-categories such as airline, animal, book, color, commerce, company, database,
-date, finance, food, git, hacker, image, internet, location, lorem, music,
-person, phone, science, string, system, vehicle, and word.
+Simulon API is a HTTP server for generating fake data using the `faker` library.
+It provides various endpoints to generate random data for different categories
+such as airline, animal, book, color, commerce, company, database, date,
+finance, food, git, hacker, image, internet, location, lorem, music, person,
+phone, science, string, system, vehicle, and word.
 
 ## Installation
 
